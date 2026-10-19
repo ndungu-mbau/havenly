@@ -1,0 +1,96 @@
+---
+import MainLayout from '@/components/MainLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Form from '@/components/starwind/form/Form.astro';
+import Field from '@/components/starwind/field/Field.astro';
+import Label from '@/components/starwind/label/Label.astro';
+import Input from '@/components/starwind/input/Input.astro';
+import Textarea from '@/components/starwind/textarea/Textarea.astro';
+import Button from '@/components/starwind/button/Button.astro';
+import Card from '@/components/starwind/card/Card.astro';
+import CardHeader from '@/components/starwind/card/CardHeader.astro';
+import CardTitle from '@/components/starwind/card/CardTitle.astro';
+import CardContent from '@/components/starwind/card/CardContent.astro';
+import Alert from '@/components/starwind/alert/Alert.astro';
+import AlertTitle from '@/components/starwind/alert/AlertTitle.astro';
+import AlertDescription from '@/components/starwind/alert/AlertDescription.astro';
+---
+
+<MainLayout title="Contact Us">
+	<Header slot="header" />
+	<Footer slot="footer" />
+
+	<section class="py-24">
+		<div class="container mx-auto px-4">
+			<div class="mb-16 text-center">
+				<h1 class="mb-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+					Let's talk.
+				</h1>
+				<p class="mx-auto max-w-2xl text-lg text-muted-foreground">
+					Whether you're managing 5 units or 500, we're here to help you get Havenly set up and running.
+				</p>
+			</div>
+
+			<div class="grid gap-12 lg:grid-cols-3">
+				<div class="lg:col-span-2">
+					<Card>
+						<CardHeader>
+							<CardTitle>Send us a message</CardTitle>
+						</CardHeader>
+						<CardContent>
+							<Form class="space-y-6">
+								<div class="grid gap-4 sm:grid-cols-2">
+									<Field>
+										<Label for="name">Full Name</Label>
+										<Input id="name" placeholder="Your name" required />
+									</Field>
+									<Field>
+										<Label for="email">Email Address</Label>
+										<Input id="email" type="email" placeholder="you@company.com" required />
+									</Field>
+								</div>
+								<Field>
+									<Label for="subject">Subject</Label>
+									<Input id="subject" placeholder="How can we help?" required />
+								</Field>
+								<Field>
+									<Label for="message">Message</Label>
+									<Textarea id="message" placeholder="Tell us about your portfolio, your team size, or anything you'd like to know..." rows={5} required />
+								</Field>
+								<Button type="submit" class="w-full sm:w-auto">Send message</Button>
+							</Form>
+						</CardContent>
+					</Card>
+				</div>
+				<div class="space-y-8">
+					<Card>
+						<CardHeader>
+							<CardTitle>Contact Information</CardTitle>
+						</CardHeader>
+						<CardContent class="space-y-4">
+							<div class="space-y-1">
+								<p class="text-sm font-medium">Email</p>
+								<p class="text-sm text-muted-foreground">hello.havenly@gmail.com</p>
+							</div>
+							<div class="space-y-1">
+								<p class="text-sm font-medium">Phone</p>
+								<p class="text-sm text-muted-foreground">+254 719 420 491</p>
+							</div>
+							<div class="space-y-1">
+								<p class="text-sm font-medium">Business Hours</p>
+								<p class="text-sm text-muted-foreground">Monday–Friday, 9am–5pm EAT</p>
+							</div>
+						</CardContent>
+					</Card>
+					<Alert>
+						<AlertTitle>Support</AlertTitle>
+						<AlertDescription>
+							Existing user? Email us at support@havenly.app for prioritized assistance.
+						</AlertDescription>
+					</Alert>
+				</div>
+			</div>
+		</div>
+	</section>
+</MainLayout>

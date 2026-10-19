@@ -1,0 +1,351 @@
+<title>Havenly Feature Roadmap</title>
+<style>
+:root {
+  /*
+     Layout: Modern professional dashboard style.
+     Clean vertical separation with a refined slate-blue palette.
+  */
+  --bg: #f8fafc;
+  --fg: #0f172a;
+  --accent: #2563eb;
+  --accent-soft: #dbeafe;
+  --border: #e2e8f0;
+  --text-muted: #64748b;
+  --card-bg: #ffffff;
+
+  /* Semantic colors */
+  --high-priority: #ef4444;
+  --med-priority: #f59e0b;
+  --low-priority: #10b981;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f172a;
+    --fg: #f1f5f9;
+    --accent: #60a5fa;
+    --accent-soft: #1e3a8a;
+    --border: #1e293b;
+    --text-muted: #94a3b8;
+    --card-bg: #1e293b;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0f172a;
+  --fg: #f1f5f9;
+  --accent: #60a5fa;
+  --accent-soft: #1e3a8a;
+  --border: #1e293b;
+  --text-muted: #94a3b8;
+  --card-bg: #1e293b;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+header {
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  text-wrap: balance;
+  color: var(--fg);
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.lifecycle-section {
+  margin-bottom: 64px;
+}
+
+.lifecycle-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lifecycle-title::before {
+  content: '';
+  width: 4px;
+  height: 24px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.flow-diagram {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 32px;
+  overflow-x: auto;
+}
+
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-bottom: 64px;
+}
+
+.role-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.role-header {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--accent-soft);
+  color: var(--accent);
+}
+
+.feature-item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.feature-item:last-child {
+  border-bottom: none;
+}
+
+.feature-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.feature-name {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.priority-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 99px;
+  color: white;
+}
+
+.p-high { background: var(--high-priority); }
+.p-medium { background: var(--med-priority); }
+.p-low { background: var(--low-priority); }
+
+.user-story {
+  font-size: 0.9rem;
+  color: var(--fg);
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.tech-req {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background: var(--bg);
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.metric {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent);
+  display: block;
+}
+
+.mermaid {
+  display: flex;
+  justify-content: center;
+}
+</style>
+
+<div class="container">
+  <header>
+    <h1>Havenly Feature Roadmap</h1>
+    <p class="subtitle">A structured path toward financial transparency and formalized property maintenance for Tenants, Caretakers, and Admins.</p>
+  </header>
+
+  <section class="lifecycle-section">
+    <div class="lifecycle-title">Core System Lifecycles</div>
+
+    <div class="flow-diagram">
+      <p style="font-weight: 600; margin-bottom: 16px; color: var(--text-muted)">The Ticket Lifecycle</p>
+      <pre class="mermaid">
+        graph LR
+          T[Tenant raises ticket] --> C[Caretaker manages/updates]
+          C --> A[Admin oversees/approves]
+          A --> C2[Caretaker resolves]
+          C2 --> TN[Tenant notified]
+          style T fill:var(--accent-soft),stroke:var(--accent)
+          style TN fill:var(--accent-soft),stroke:var(--accent)
+      </pre>
+    </div>
+
+    <div class="flow-diagram">
+      <p style="font-weight: 600; margin-bottom: 16px; color: var(--text-muted)">The Payment Lifecycle</p>
+      <pre class="mermaid">
+        graph LR
+          P[Paystack trigger] --> L[Automatic ledger update]
+          L --> H[Tenant history updated]
+          style P fill:var(--accent-soft),stroke:var(--accent)
+          style H fill:var(--accent-soft),stroke:var(--accent)
+      </pre>
+    </div>
+
+    <div class="flow-diagram">
+      <p style="font-weight: 600; margin-bottom: 16px; color: var(--text-muted)">The Utility Lifecycle</p>
+      <pre class="mermaid">
+        graph LR
+          C[Caretaker enters price] --> B[Bill generated/recorded]
+          B --> TN[Tenant notified]
+          style C fill:var(--accent-soft),stroke:var(--accent)
+          style TN fill:var(--accent-soft),stroke:var(--accent)
+      </pre>
+    </div>
+  </section>
+
+  <div class="role-grid">
+    <!-- CARETAKER -->
+    <div class="role-card">
+      <div class="role-header">Caretaker</div>
+
+      <div class="feature-item">
+        <div class="feature-meta">
+          <span class="feature-name">Utility Price Entry</span>
+          <span class="priority-badge p-high">High</span>
+        </div>
+        <div class="user-story">As a caretaker, I want to enter utility prices for occupied houses so that bills are accurately recorded.</div>
+        <div class="tech-req">RBAC: Write access restricted to OCCUPIED units</div>
+        <span class="metric">Success: 100% of occupied units billed monthly.</span>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-meta">
+          <span class="feature-name">Ticket Management</span>
+          <span class="priority-badge p-high">High</span>
+        </div>
+        <div class="user-story">As a caretaker, I want to update ticket status (Reported &rarr; In Progress &rarr; Resolved) to avoid word-of-mouth failures.</div>
+        <div class="tech-req">Status State Machine + Notification Trigger</div>
+        <span class="metric">Success: Reduction in duplicate reports.</span>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-meta">
+          <span class="feature-name">Admin Escalation</span>
+          <span class="priority-badge p-medium">Medium</span>
+        </div>
+        <div class="user-story">As a caretaker, I want to forward tickets to the admin so that complex repairs get approved funding.</div>
+        <div class="tech-req">Ticket Assignment Transfer logic</div>
+        <span class="metric">Success: Average time to Admin approval.</span>
+      </div>
+    </div>
+
+    <!-- TENANT -->
+    <div class="role-card">
+      <div class="role-header">Tenant</div>
+
+      <div class="feature-item">
+        <div class="feature-meta">
+          <span class="feature-name">Maintenance Portal</span>
+          <span class="priority-badge p-high">High</span>
+        </div>
+        <div class="user-story">As a tenant, I want to raise maintenance tickets via a formalized channel so that I have a record of my request.</div>
+        <div class="tech-req">Ticket creation API + File upload for photos</div>
+        <span class="metric">Success: % of tickets raised via portal vs phone.</span>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-meta">
+          <span class="feature-name">Financial Ledger</span>
+          <span class="priority-badge p-medium">Medium</span>
+        </div>
+        <div class="user-story">As a tenant, I want to view my rent and utility payment history so that I have full financial transparency.</div>
+        <div class="tech-req">Read-only Ledger View + Paystack Webhook sync</div>
+        <span class="metric">Success: Decrease in billing disputes.</span>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-meta">
+          <span class="feature-name">Utility Notifications</span>
+          <span class="priority-badge p-low">Low</span>
+        </div>
+        <div class="user-story">As a tenant, I want to be notified when a new utility bill is generated so I can pay it promptly.</div>
+        <div class="tech-req">Push notifications / Email trigger on Bill creation</div>
+        <span class="metric">Success: Average time from bill to payment.</span>
+      </div>
+    </div>
+
+    <!-- ADMIN / LANDLORD -->
+    <div class="role-card">
+      <div class="role-header">Admin / Landlord</div>
+
+      <div class="feature-item">
+        <div class="feature-meta">
+          <span class="feature-name">Automated Ledger Sync</span>
+          <span class="priority-badge p-high">High</span>
+        </div>
+        <div class="user-story">As an admin, I want payments to automatically update the ledger so that I don't have to manually reconcile Paystack logs.</div>
+        <div class="tech-req">Paystack Integration + Idempotent ledger updates</div>
+        <span class="metric">Success: Zero manual entries for Paystack payments.</span>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-meta">
+          <span class="feature-name">Ticket Oversight</span>
+          <span class="priority-badge p-medium">Medium</span>
+        </div>
+        <div class="user-story">As an admin, I want to oversee and approve escalated tickets so that maintenance quality is maintained.</div>
+        <div class="tech-req">Admin Approval Workflow + Notification system</div>
+        <span class="metric">Success: Resolution rate of escalated tickets.</span>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-meta">
+          <span class="feature-name">Manual Payment Recording</span>
+          <span class="priority-badge p-medium">Medium</span>
+        </div>
+        <div class="user-story">As an admin, I want to manually record external payments so that the ledger remains the single source of truth.</div>
+        <div class="tech-req">Admin-only Ledger Write access</div>
+        <span class="metric">Success: Ledger accuracy vs bank statements.</span>
+      </div>
+    </div>
+  </div>
+</div>

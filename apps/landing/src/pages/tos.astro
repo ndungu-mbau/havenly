@@ -1,0 +1,78 @@
+---
+import MainLayout from '@/components/MainLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Prose from '@/components/starwind/prose/Prose.astro';
+---
+
+<MainLayout title="Terms of Service">
+	<Header slot="header" />
+	<Footer slot="footer" />
+
+	<section class="py-24">
+		<div class="container mx-auto px-4 max-w-4xl">
+			<div class="mb-12 text-center">
+				<h1 class="mb-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+					Terms of Service
+				</h1>
+				<p class="text-muted-foreground">
+					Last updated: October 15, 2026
+				</p>
+			</div>
+
+			<div class="grid gap-12 lg:grid-cols-4">
+				<aside class="hidden lg:block lg:col-span-1">
+					<nav class="sticky top-32 space-y-2 text-sm">
+						<a href="#acceptance" class="block text-muted-foreground hover:text-foreground transition-colors">Acceptance of Terms</a>
+						<a href="#accounts" class="block text-muted-foreground hover:text-foreground transition-colors">User Accounts</a>
+						<a href="#payments" class="block text-muted-foreground hover:text-foreground transition-colors">Payments & Fees</a>
+						<a href="#termination" class="block text-muted-foreground hover:text-foreground transition-colors">Termination</a>
+						<a href="#liability" class="block text-muted-foreground hover:text-foreground transition-colors">Limitation of Liability</a>
+					</nav>
+				</aside>
+				<div class="lg:col-span-3">
+					<Prose class="space-y-8">
+						<section id="acceptance">
+							<h2 class="text-2xl font-bold mb-4">1. Acceptance of Terms</h2>
+							<p>
+								By accessing or using the Havenly platform, you agree to be bound by these Terms of Service.
+								If you do not agree to these terms, please do not use our services.
+							</p>
+						</section>
+						<section id="accounts">
+							<h2 class="text-2xl font-bold mb-4">2. User Accounts</h2>
+							<p>
+								You are responsible for maintaining the confidentiality of your account and password.
+								You agree to notify Havenly immediately of any unauthorized use of your account.
+							</p>
+						</section>
+						<section id="payments">
+							<h2 class="text-2xl font-bold mb-4">3. Payments & Fees</h2>
+							<p>
+								Havenly provides tools for rent collection. All fees associated with the use of
+								the platform will be clearly disclosed at the time of transaction.
+								Payments processed through third-party gateways are subject to their own terms.
+							</p>
+						</section>
+						<section id="termination">
+							<h2 class="text-2xl font-bold mb-4">4. Termination</h2>
+							<p>
+								We reserve the right to terminate or suspend your account without prior notice
+								for conduct that we believe violates these Terms or is harmful to other users
+								or our business interests.
+							</p>
+						</section>
+						<section id="liability">
+							<h2 class="text-2xl font-bold mb-4">5. Limitation of Liability</h2>
+							<p>
+								Havenly is provided "as is" without warranties of any kind. In no event shall
+								Havenly be liable for any indirect, incidental, or consequential damages
+								arising out of your use of the service.
+							</p>
+						</section>
+					</Prose>
+				</div>
+			</div>
+		</div>
+	</section>
+</MainLayout>

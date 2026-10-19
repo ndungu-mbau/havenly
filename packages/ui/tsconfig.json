@@ -1,0 +1,17 @@
+{
+  "extends": "@havenly/config/tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "types": [],
+    "paths": {
+      "@havenly/ui/components/*": ["./src/components/*"],
+      "@havenly/ui/hooks/*": ["./src/hooks/*"],
+      "@havenly/ui/lib/*": ["./src/lib/*"],
+      "@havenly/ui/*": ["./src/*"],
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,94 @@
+---
+import MainLayout from '@/components/MainLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Prose from '@/components/starwind/prose/Prose.astro';
+import Card from '@/components/starwind/card/Card.astro';
+import CardHeader from '@/components/starwind/card/CardHeader.astro';
+import CardTitle from '@/components/starwind/card/CardTitle.astro';
+import CardContent from '@/components/starwind/card/CardContent.astro';
+import Avatar from '@/components/starwind/avatar/Avatar.astro';
+import AvatarImage from '@/components/starwind/avatar/AvatarImage.astro';
+import AvatarFallback from '@/components/starwind/avatar/AvatarFallback.astro';
+import Label from '@/components/starwind/label/Label.astro';
+---
+
+<MainLayout title="About Us">
+	<Header slot="header" />
+	<Footer slot="footer" />
+
+	<section class="py-24">
+		<div class="container mx-auto px-4">
+			<div class="mb-16 text-center">
+				<h1 class="mb-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+					Redefining Rental Management
+				</h1>
+				<p class="mx-auto max-w-2xl text-lg text-muted-foreground">
+					Our mission is to bridge the gap between property owners and tenants
+					through technology that prioritizes transparency and efficiency.
+				</p>
+			</div>
+
+			<div class="grid gap-12 lg:grid-cols-2 items-center mb-24">
+				<div class="space-y-6">
+					<h2 class="text-2xl font-bold">Our Story</h2>
+					<Prose>
+						<p>
+							Havenly started with a simple observation: managing properties was
+							still stuck in the era of paper ledgers and manual bank transfers.
+							We saw the friction this caused for both landlords and tenants.
+						</p>
+						<p>
+							Our team combined expertise in fintech and real estate to build
+							a platform that doesn't just track payments, but manages the
+							entire relationship. From digital leases to instant payments,
+							we've removed the administrative burden of property management.
+						</p>
+					</Prose>
+				</div>
+				<div class="grid gap-4 sm:grid-cols-2">
+					<Card>
+						<CardHeader>
+							<CardTitle class="text-lg">Our Vision</CardTitle>
+						</CardHeader>
+						<CardContent>
+							<p class="text-sm text-muted-foreground">
+								To be the global standard for seamless, transparent, and
+								fair rental management.
+							</p>
+						</CardContent>
+					</Card>
+					<Card>
+						<CardHeader>
+							<CardTitle class="text-lg">Our Mission</CardTitle>
+						</CardHeader>
+						<CardContent>
+							<p class="text-sm text-muted-foreground">
+								Empowering owners to scale their portfolios while
+								providing tenants with a professional experience.
+							</p>
+						</CardContent>
+					</Card>
+				</div>
+			</div>
+
+			<div class="text-center mb-12">
+				<h2 class="text-3xl font-bold tracking-tight">The Team Behind Havenly</h2>
+			</div>
+			<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+				{['Nelson Mbau', 'Sarah Chen', 'James Wilson', 'Elena Rodriguez'].map((name) => (
+					<div class="flex flex-col items-center text-center space-y-4">
+						<Avatar class="h-24 w-24">
+							<AvatarImage src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`} alt={name} />
+							<AvatarFallback>{name[0]}</AvatarFallback>
+						</Avatar>
+						<div>
+							<Label class="text-lg font-semibold block">{name}</Label>
+							<span class="text-sm text-muted-foreground">Co-Founder / Lead</span>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+</MainLayout>

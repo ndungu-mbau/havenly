@@ -1,0 +1,244 @@
+---
+import MainLayout from '@/components/MainLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Button from '@/components/starwind/button/Button.astro';
+import Card from '@/components/starwind/card/Card.astro';
+import CardHeader from '@/components/starwind/card/CardHeader.astro';
+import CardTitle from '@/components/starwind/card/CardTitle.astro';
+import CardContent from '@/components/starwind/card/CardContent.astro';
+import Badge from '@/components/starwind/badge/Badge.astro';
+import { ENV } from '@/env';
+---
+
+<MainLayout title="Home">
+	<Header slot="header" />
+	<Footer slot="footer" />
+
+	<!-- Hero Section -->
+	<section class="relative overflow-hidden bg-background py-24 lg:py-32">
+		<div class="container mx-auto px-4 text-center">
+			<Badge variant="outline" class="mb-4">Built for East African Markets (KES, M-Pesa)</Badge>
+			<h1 class="mb-6 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
+				Rent collection that works <br />
+				<span class="text-primary">while you focus on what matters.</span>
+			</h1>
+			<p class="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground sm:text-xl">
+				Havenly handles invoicing, payment collection, and payout disbursement so you can manage your portfolio without constant administrative overhead.
+			</p>
+			<div class="flex flex-wrap justify-center gap-4">
+				<Button size="lg" class="px-8" as-child>
+				<a href={ENV.DASHBOARD_URL} target="_blank" rel="noopener noreferrer">Explore your workspace</a>
+			</Button>
+				<Button size="lg" variant="outline" class="px-8">See how it works</Button>
+			</div>
+		</div>
+	</section>
+
+	<!-- How it works Section -->
+	<section id="how-it-works" class="bg-muted/30 py-24">
+		<div class="container mx-auto px-4">
+			<div class="mb-16 text-center">
+				<h2 class="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+					From setup to collection in three steps.
+				</h2>
+				<p class="mx-auto max-w-2xl text-muted-foreground">
+					Havenly handles the entire rent lifecycle. You set it up once—then it runs itself.
+				</p>
+			</div>
+			<div class="grid gap-8 sm:grid-cols-3">
+				<Card>
+					<CardHeader>
+						<div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold">01</div>
+						<CardTitle>Set up your portfolio</CardTitle>
+					</CardHeader>
+					<CardContent>
+						<p class="text-muted-foreground">
+							Add properties with their location and unit count. Each property can have multiple units categorized by type — studios, one-bedrooms, two-bedrooms, or custom categories you define.
+						</p>
+					</CardContent>
+				</Card>
+				<Card>
+					<CardHeader>
+						<div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold">02</div>
+						<CardTitle>Invoices go out automatically</CardTitle>
+					</CardHeader>
+					<CardContent>
+						<p class="text-muted-foreground">
+							Each billing period, Havenly generates rent invoices per unit and sends them straight to your tenants via Paystack. Invoices include amount, due date, and payment status tracking.
+						</p>
+					</CardContent>
+				</Card>
+				<Card>
+					<CardHeader>
+						<div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold">03</div>
+						<CardTitle>Money arrives. You see everything.</CardTitle>
+					</CardHeader>
+					<CardContent>
+						<p class="text-muted-foreground">
+							Payments reconcile in real time through Paystack. Payouts land in your M-Pesa phone number or bank account. Dashboards show collected, pending, and overdue amounts at a glance.
+						</p>
+					</CardContent>
+				</Card>
+			</div>
+		</div>
+	</section>
+
+	<!-- Features Section -->
+	<section id="features" class="py-24">
+		<div class="container mx-auto px-4">
+			<div class="mb-16 text-center">
+				<h2 class="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+					Every tool your portfolio needs.
+				</h2>
+				<p class="mx-auto max-w-2xl text-muted-foreground">
+					Built from the ground up for property managers who want to avoid spreadsheets in their business.
+				</p>
+			</div>
+			<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+				<Card>
+					<CardHeader>
+						<CardTitle>Every property, one clear view</CardTitle>
+					</CardHeader>
+					<CardContent>
+						<p class="text-muted-foreground">
+							Units, occupancy, lease terms, and rent roll are visible without opening a spreadsheet. Property hierarchies scale from a single building to a full portfolio.
+						</p>
+					</CardContent>
+				</Card>
+				<Card>
+					<CardHeader>
+						<CardTitle>Rent collection on autopilot</CardTitle>
+					</CardHeader>
+					<CardContent>
+						<p class="text-muted-foreground">
+							Invoices generate automatically every period. Payments reconcile in real time through Paystack. You see what's collected and overdue instantly.
+						</p>
+					</CardContent>
+				</Card>
+				<Card>
+					<CardHeader>
+						<CardTitle>Portfolio intelligence that scales</CardTitle>
+					</CardHeader>
+					<CardContent>
+						<p class="text-muted-foreground">
+							Track yield, vacancy, and cash flow with summaries built for decisions. Metrics include real-time payment tracking and 100% audit trail coverage.
+						</p>
+					</CardContent>
+				</Card>
+				<Card>
+					<CardHeader>
+						<CardTitle>M-Pesa STK push & card collection</CardTitle>
+					</CardHeader>
+					<CardContent>
+						<p class="text-muted-foreground">
+							Tenants pay via M-Pesa or debit card. Havenly initiates the charge, tracks the outcome, and retries on failure automatically.
+						</p>
+					</CardContent>
+				</Card>
+				<Card>
+					<CardHeader>
+						<CardTitle>Tenant lifecycle management</CardTitle>
+					</CardHeader>
+					<CardContent>
+						<p class="text-muted-foreground">
+							Lease terms, Paystack customer codes, and billing history are tied to every renter. No disconnected spreadsheets.
+						</p>
+					</CardContent>
+				</Card>
+				<Card>
+					<CardHeader>
+						<CardTitle>Audit-ready by default</CardTitle>
+					</CardHeader>
+					<CardContent>
+						<p class="text-muted-foreground">
+							Every transaction, every invoice, every payout is logged and traceable. Financial clarity your accountant will thank you for.
+						</p>
+					</CardContent>
+				</Card>
+			</div>
+		</div>
+	</section>
+
+	<!-- Trust/Approach Section -->
+	<section id="approach" class="bg-muted/30 py-24">
+		<div class="container mx-auto px-4">
+			<div class="grid gap-12 lg:grid-cols-2 items-center">
+				<div>
+					<h2 class="mb-6 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+						Less admin. More confidence in your portfolio.
+					</h2>
+					<p class="mb-8 text-lg text-muted-foreground leading-relaxed">
+						Havenly was built for one reason: professional managers deserve a system that works
+						as hard as they do—without the spreadsheet burden. Lease terms, payment history,
+						and payout records are all tracked automatically from a single dashboard.
+					</p>
+					<div class="grid gap-4">
+						{ [
+							"Automated invoicing & Paystack-powered collection",
+							"Bank & M-Pesa payouts — scheduled, tracked, confirmed",
+							"Role-based access for your team and your tenants",
+							"Audit-ready records for every transaction",
+							"Built for East African markets (KES, M-Pesa)",
+							"No spreadsheets. No manual reconciliation."
+						].map(item => (
+							<div class="flex items-center gap-3 text-sm font-medium text-foreground">
+								<div class="grid size-5 place-items-center rounded-full bg-primary text-primary-foreground">
+									<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+								</div>
+								{item}
+							</div>
+						))}
+					</div>
+				</div>
+				<div class="relative">
+					<div class="bg-primary/10 absolute -inset-4 rounded-3xl blur-3xl" />
+					<Card class="relative border-border bg-background shadow-xl">
+						<CardHeader class="border-b bg-muted/50">
+							<CardTitle class="text-lg">Portfolio Summary</CardTitle>
+						</CardHeader>
+						<CardContent class="p-6">
+							<div class="grid grid-cols-2 gap-4 mb-6">
+								<div class="p-4 rounded-lg bg-muted/50">
+									<p class="text-xs text-muted-foreground uppercase font-bold">Collected</p>
+									<p class="text-2xl font-bold text-primary">KSh 7,950</p>
+								</div>
+								<div class="p-4 rounded-lg bg-muted/50">
+									<p class="text-xs text-muted-foreground uppercase font-bold">Pending</p>
+									<p class="text-2xl font-bold">KSh 12,400</p>
+								</div>
+							</div>
+							<div class="space-y-3">
+								{['Parkview Residences', 'Cedar Grove', 'The Monroe'].map(prop => (
+									<div class="flex items-center justify-between p-3 rounded-lg border border-border text-sm">
+										<span class="font-medium">{prop}</span>
+										<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-bold">Occupied</span>
+									</div>
+								))}
+							</div>
+						</CardContent>
+					</Card>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Final CTA -->
+	<section class="py-24">
+		<div class="container mx-auto px-4">
+			<div class="relative overflow-hidden rounded-3xl bg-primary px-8 py-16 text-center text-primary-foreground">
+				<h2 class="mb-6 text-3xl font-bold tracking-tight sm:text-4xl">
+					Ready to stop chasing rent?
+				</h2>
+				<p class="mb-10 mx-auto max-w-2xl text-primary-foreground/80">
+					Set up your portfolio in minutes. Havenly handles invoicing, collection, and
+					disbursement—so you can focus on growth.
+				</p>
+				<div class="flex flex-wrap justify-center gap-4">
+					<Button size="lg" variant="secondary" class="px-8">Get started</Button>
+					<Button size="lg" variant="outline" class="px-8 bg-transparent text-primary-foreground border-primary-foreground hover:bg-primary-foreground/10">Talk to us</Button>
+				</div>
+			</div>
+		</div>
+	</section>
+</MainLayout>

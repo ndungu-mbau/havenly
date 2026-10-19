@@ -1,0 +1,148 @@
+import "varlock/auto-load";
+import { createDb } from "@havenly/db";
+import {
+  organization,
+  member,
+  user,
+  properties,
+  renters,
+  caretakers,
+} from "@havenly/db";
+import { eq, sql } from "drizzle-orm";
+import { nanoid } from "nanoid";
+
+const db = createDb({ DATABASE_URL: process.env.DATABASE_URL || "" });
+
+async function migrateOrgs() {
+  console.log("Starting organization migration...");
+
+  try {
+    // 1. Identify unique Landlords (owners) from properties
+    const allProperties = await db.select().from(properties);
+    const uniqueOrganizationIds = [...new Set(allProperties.map(p => p.organizationId))];
+
+    console.log(`Found ${uniqueOrganizationIds.length} unique landlords.`);
+
+    const ownerToOrgMap = new Map<string, string>();
+
+    for (const organizationId of uniqueOrganizationIds) {
+      const ownerUser = await db.query.user.findFirst({
+        where: eq(user.id, organizationId)
+      });
+
+      if (!ownerUser) {
+        console.warn(`User not found for organizationId ${organizationId}, skipping.`);
+        continue;
+      }
+
+      // Create Organization
+      // Name and slug derived from user name for now
+      const orgName = `${ownerUser.name}'s Organization`;
+      const orgSlug = `${ownerUser.name.toLowerCase().replace(/\s+/g, '-')}-${nanoid(5)}`;
+
+      const [newOrg] = await db.insert(organization).values({
+        name: orgName,
+        slug: orgSlug,
+      }).returning();
+
+      console.log(`Created organization ${orgName} (${newOrg.id}) for user ${ownerUser.name}`);
+
+      // Assign landlord as owner of the organization
+      await db.insert(member).values({
+        organizationId: newOrg.id,
+        userId: organizationId,
+        role: "owner",
+      });
+
+      ownerToOrgMap.set(organizationId, newOrg.id);
+    }
+
+    // 2. Map properties to organizations
+    console.log("Mapping properties to organizations...");
+    for (const prop of allProperties) {
+      const orgId = ownerToOrgMap.get(prop.organizationId);
+      if (orgId) {
+        await db.update(properties)
+          .set({ organizationId: orgId })
+          .where(eq(properties.id, prop.id));
+      }
+    }
+
+    // 3. Map renters to organizations
+    console.log("Mapping renters to organizations...");
+    const allRenters = await db.select().from(renters);
+    for (const renter of allRenters) {
+      const orgId = ownerToOrgMap.get(renter.ownerId);
+      if (orgId) {
+        await db.update(renters)
+          .set({ organizationId: orgId })
+          .where(eq(renters.id, renter.id));
+      }
+    }
+
+    // 4. Assign caretakers to organizations
+    console.log("Assigning caretakers to organizations...");
+    const propWithCaretakers = allProperties.filter(p => p.caretakerId);
+    const caretakerAssignments = new Map<string, Set<string>>(); // caretakerId -> Set of orgIds
+
+    for (const prop of propWithCaretakers) {
+      const orgId = ownerToOrgMap.get(prop.organizationId);
+      if (orgId && prop.caretakerId) {
+        if (!caretakerAssignments.has(prop.caretakerId)) {
+          caretakerAssignments.set(prop.caretakerId, new Set());
+        }
+        caretakerAssignments.get(prop.caretakerId)!.add(orgId);
+      }
+    }
+
+    for (const [caretakerId, orgIds] of caretakerAssignments.entries()) {
+      // Find the user ID associated with the caretaker
+      const caretakerRecord = await db.query.caretakers.findFirst({
+        where: eq(caretakers.id, caretakerId)
+      });
+
+      if (!caretakerRecord || !caretakerRecord.userId) {
+        console.warn(`Caretaker ${caretakerId} has no associated userId, skipping membership.`);
+        continue;
+      }
+
+      for (const orgId of orgIds) {
+        try {
+          await db.insert(member).values({
+            organizationId: orgId,
+            userId: caretakerRecord.userId,
+            role: "member",
+          });
+        } catch (e) {
+          // Likely a duplicate membership if the caretaker manages multiple properties in the same org
+          console.log(`Caretaker ${caretakerRecord.userId} already a member of org ${orgId}`);
+        }
+      }
+    }
+
+    // 5. Verification
+    console.log("Verifying migration...");
+
+    const orphanedProperties = await db.select().from(properties).where(sql`organization_id IS NULL`);
+    if (orphanedProperties.length > 0) {
+      console.error(`Found ${orphanedProperties.length} orphaned properties!`);
+    } else {
+      console.log("No orphaned properties found.");
+    }
+
+    const orphanedRenters = await db.select().from(renters).where(sql`organization_id IS NULL`);
+    if (orphanedRenters.length > 0) {
+      console.error(`Found ${orphanedRenters.length} orphaned renters!`);
+    } else {
+      console.log("No orphaned renters found.");
+    }
+
+    console.log("Migration completed successfully.");
+
+  } catch (error) {
+    console.error("Migration failed:", error);
+    process.exit(1);
+  }
+}
+
+migrateOrgs();

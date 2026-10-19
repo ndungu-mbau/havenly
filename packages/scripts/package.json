@@ -1,0 +1,17 @@
+{
+  "name": "@havenly/scripts",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "migrate-orgs": "tsx src/migrate-orgs.ts",
+    "seed-org": "tsx src/seed-org.ts"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^10.6.0",
+    "@havenly/db": "workspace:*",
+    "drizzle-orm": "latest",
+    "nanoid": "latest",
+    "tsx": "latest"
+  }
+}

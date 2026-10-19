@@ -1,0 +1,3 @@
+{
+  "extends": "@havenly/config/tsconfig.base.json"
+}

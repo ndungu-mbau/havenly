@@ -1,0 +1,23 @@
+{
+  "name": "@havenly/api",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@havenly/auth": "workspace:*",
+    "@havenly/db": "workspace:*",
+    "@trpc/client": "catalog:",
+    "@trpc/server": "catalog:",
+    "drizzle-orm": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@havenly/config": "workspace:*",
+    "typescript": "catalog:"
+  }
+}

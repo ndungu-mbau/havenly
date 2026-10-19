@@ -1,0 +1,106 @@
+---
+import MainLayout from '@/components/MainLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Prose from '@/components/starwind/prose/Prose.astro';
+---
+
+<MainLayout title="Privacy Policy">
+	<Header slot="header" />
+	<Footer slot="footer" />
+
+	<section class="py-24">
+		<div class="container mx-auto px-4 max-w-4xl">
+			<div class="mb-12 text-center">
+				<h1 class="mb-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+					Privacy Policy
+				</h1>
+				<p class="text-muted-foreground">
+					Last updated: August 30, 2026
+				</p>
+			</div>
+
+			<div class="space-y-12">
+				<Prose>
+					<h2 class="text-2xl font-bold mb-4">Overview</h2>
+					<p>
+						Havenly ("we", "our", "us") operates the Havenly rental management platform. This privacy policy explains how we handle your data when you use our service.
+					</p>
+
+					<h2 class="text-2xl font-bold mb-4">What we collect</h2>
+					<h3 class="text-xl font-semibold mb-2">Anonymous visitor tracking</h3>
+					<p>
+						When you visit our site, we assign a persistent visitor_id cookie to your browser. This cookie identifies returning anonymous visitors without collecting personally identifiable information. The cookie has a 1-year expiry and is set on first visit. We use this data to understand how visitors interact with our site and to compile aggregate statistics about site usage.
+					</p>
+
+					<h3 class="text-xl font-semibold mb-2">Account information</h3>
+					<p>
+						If you create an account or sign in, we collect:
+					</p>
+					<ul class="list-disc pl-6 space-y-2">
+						<li>Name and email address</li>
+						<li>Role (tenant or admin)</li>
+						<li>Paystack customer codes (for payment processing)</li>
+						<li>Lease terms and rental history</li>
+						<li>Payment transaction records</li>
+					</ul>
+
+					<h3 class="text-xl font-semibold mb-2">Payment processing</h3>
+					<p>
+						Havenly integrates with Paystack for invoicing, collection, and payouts. When you process payments or request payouts:
+					</p>
+					<ul class="list-disc pl-6 space-y-2">
+						<li>Payment amounts and statuses are recorded</li>
+						<li>M-Pesa phone numbers or bank account details are stored for disbursement</li>
+						<li>Transaction references and audit logs are maintained</li>
+						<li>Card details are handled entirely by Paystack and never touch our servers</li>
+					</ul>
+
+					<h2 class="text-2xl font-bold mb-4">How we use your information</h2>
+					<ul class="list-disc pl-6 space-y-2">
+						<li>To provide and maintain our rental management service</li>
+						<li>To process payments and disburse funds to landlords</li>
+						<li>To send invoices and payment reminders to tenants</li>
+						<li>To communicate with you about your account and service</li>
+						<li>To detect, prevent, and address fraud or security issues</li>
+						<li>To comply with legal obligations and protect our users' rights</li>
+					</ul>
+
+					<h2 class="text-2xl font-bold mb-4">Data retention</h2>
+					<ul class="list-disc pl-6 space-y-2">
+						<li>Anonymous visitor cookies: 1 year expiry</li>
+						<li>Payment records: Retained for audit and tax purposes as required</li>
+						<li>Account information: Retained for the duration of your relationship with Havenly plus 1 year after account closure</li>
+						<li>Audit logs: Retained and maintained for security and compliance purposes</li>
+					</ul>
+
+					<h2 class="text-2xl font-bold mb-4">Data sharing</h2>
+					<p>
+						Payment data is shared with Paystack for processing invoices, charges, and payouts. Paystack's privacy policy governs their use of this data.
+					</p>
+					<p>
+						We may disclose information if required by law or to protect the rights, property, or safety of Havenly and our users.
+					</p>
+					<p>
+						We do not sell your personal information to third parties.
+					</p>
+
+					<h2 class="text-2xl font-bold mb-4">Your rights</h2>
+					<p>
+						You can view, modify, or delete your account information at any time through the Havenly dashboard. You can opt-out of anonymous visitor tracking by clearing your browser cookies. You can request data portability or deletion by contacting us at support@havenly.app.
+					</p>
+
+					<h2 class="text-2xl font-bold mb-4">Children's privacy</h2>
+					<p>
+						Our service is not directed to children under 13. We do not knowingly collect personal information from children under 13.
+					</p>
+
+					<h2 class="text-2xl font-bold mb-4">Changes to this privacy policy</h2>
+					<p>
+						We may update our privacy policy from time to time. We will notify you of any changes by posting the new privacy policy on this page and updating the "last updated" date.
+					</p>
+				</Prose>
+			</div>
+		</div>
+	</section>
+</MainLayout>
